@@ -7,6 +7,7 @@ from pymongo.collection import Collection
 from pymongo.database import Database
 import logging
 import sys
+from datetime import datetime
 
 load_dotenv(find_dotenv())
 # from logging import Logger
@@ -102,7 +103,12 @@ def remove_book(book_id:str):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return {
+        "message": "Hello! I am currently running on a Docker Container!",
+        "time": time
+    }
+    # return #render_template("index.html")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True,port=5000)
+    app.run()
