@@ -13,6 +13,7 @@ RUN pip install -r requirements.txt
 # source in local to destination in container
 COPY ./main_app/ /azurecontainerappsdemo/
 
+COPY ./.env /azurecontainerappsdemo/
 
 EXPOSE 5000
 
