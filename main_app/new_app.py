@@ -17,10 +17,12 @@ logging.debug('Start of program')
 
 mongo_client=MongoClient(connection_string)
 try:
+    logging.debug("Trying to connect to Atlas")
     dbs=mongo_client.list_database_names()
 except Exception as e:
-    print("Exception: ")
-    print(e)
+    logging.debug("Exception: could not connect to atlas")
+    logging.debug(e)
+    logging.debug("Exiting program")
     sys.exit(0)  
 bookshelf_db = mongo_client.bookshelf  ## name of the db
 collection = bookshelf_db.books ## name of the collection 
