@@ -10,11 +10,11 @@ COPY  ./requirements.txt /azurecontainerappsdemo/
 # run pip install -r requirements.txt
 RUN pip install -r requirements.txt
 
+# source in local to destination in container
 COPY ./main_app/ /azurecontainerappsdemo/
 
 
-ENV FLASK_APP new_app.py
-
 EXPOSE 5000
 
-CMD ["python", "new_app.py"]
+# Use Gunicorn to run the app
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "new_app:app"]
